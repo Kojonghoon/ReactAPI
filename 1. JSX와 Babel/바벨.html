@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바벨소개</title>
+    <!-- import React from "react"; <= hacker-step1 폴더안에 있는 index.js-->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <!--import ReactDOM from "react-dom/client"; <= hacker-step1 폴더안에 있는 index.js-->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!-- ES5같은 버전에서도 동작하도록 지원받기 위해서 바벨도 주입받음
+      CDN방식은 로컬PC 캐쉬사용함  - 시스템 사용 발생
+      unpkg방식 네트워크 통해 객체 주입 - 속도향상
+    -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- 아래 내부노드에 리액트를 통해서 생산된 태그 들어옴-->
+    <div id="root"></div>
+    <style>
+      .title {
+        color: green;
+      }
+    </style>
+    <script type="text/babel">
+      //자바스크립트에서 html 노드를 접근하기 위해서 브라우저의 내장객체인 document는 querySelector 제공함
+      const rootElement = document.querySelector("#root"); //아이디인 경우 반드시 #을 붙일 것
+      //React에서 제공하는 createElement함수로 태그를 생성가능함
+      //스타일 추가시에는 반드시 class 속성이 아니라 className으로 해야 함
+      const element = React.createElement(
+        //DOM생성하기
+        "h1",
+        {
+          className: "title",
+        },
+        ["Java", "React", "Spring"]
+      );
+      ReactDOM.createRoot(rootElement).render(element);
+    </script>
+  </body>
+</html>
+
+<!-- 
+  const root = createRoot(container);
+  root.render(element);
+  주어진 container에 대한 React루트를 만들고
+
+
+-->

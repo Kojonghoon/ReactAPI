@@ -1,0 +1,8 @@
+Babel은 Javascript Compiler
+컴파일러 : 언어해석기, 특정 언어를 다른 프로그래밍 언어로 옮기는 프로그램
+
+const element = <h1>hello React</h1>
+
+"use strict";
+
+cconst element = /*#__PURE__*/React.createElement("h1", null, "hello React");

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바벨소개</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <style>
+      .title {
+        color: purple;
+        font-size: 58px;
+      }
+    </style>
+    <script type="text/babel">
+      const rootElement = document.querySelector("#root");
+      const subject = "React";
+      const 클래스이름 = "title";
+      //태그안에 중괄호만 붙이면 어디서든 자바스크립스 코드사용 가능함
+      //심지어는 태그에 데이터셋을 참조하는 주소번지도 전달할 수 있다. - 자바
+      const element = <h1 className={클래스이름}>{subject} </h1>;
+      ReactDOM.createRoot(rootElement).render(element);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+Element 찍기
+Function -> 재사용 가능한 element생성
+함수이지만 element이다.
+
+const Paint=({props})=>{}
+
+const Paint=({title, description})=>{
+    return(
+        <>
+            <h1>{title}</h1>
+            <h2>{description}</h2>
+
+        </>
+    )
+}
+

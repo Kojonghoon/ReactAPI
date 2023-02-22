@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.querySelector("#root");
+      //홀수는 작게 짝수는 크게 출력하라
+      //파라미터에 {}가 있으면 props이다.
+      const Number2 = ({ number, selected }) => {
+        // 1 2 3 4 5
+        // return number % 2 === 0 ? <h1>{number}</h1> : <h3>{number}</h3>;
+        return selected ? <h1>{number}</h1> : <h3>{number}</h3>;
+      };
+      const element = (
+        <>
+          {/* 여긴 JSX땅임 - 주석 주의 key값은 반드시 unique해야함 */}
+          {/* javascript의 복잡한 연산을 element를 사용하는 곳에서 사용가능*/}
+          {/* 왜냐면 JS와  JSX섞어쓰기가 가능하니까....*/}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => (
+            //여긴 JS 땅임 -key값은 반드시 unique해야 함.
+            <Number2 key={number} number={number} selected={number === 3} />
+          ))}
+        </>
+      );
+      ReactDOM.createRoot(rootElement).render(element);
+    </script>
+  </body>
+</html>

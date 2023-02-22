@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h1>One</h1>
+      <h1>Two</h1>
+      <h1>Three</h1>
+    </div>
+    <script type="text/babel">
+      const rootElement = document.querySelector("#root");
+      const element = (
+        <div
+          className="box"
+          children={[
+            React.createElement("h1", null, "Zero"), //null은 클래스 이름이 들어가는 자리
+            React.createElement("h1", null, "Two"),
+            React.createElement("h1", null, "Three"),
+          ]}
+        />
+      );
+      ReactDOM.createRoot(rootElement).render(element);
+    </script>
+  </body>
+</html>

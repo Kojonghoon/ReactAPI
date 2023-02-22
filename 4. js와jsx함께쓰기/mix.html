@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.querySelector("#root");
+      //paint를 소문자로 하지 않습니다. -에러발생
+      const Message = ({ text }) => {
+        {
+          /*파라미터로 넘어온 문자열의 첫번째 문자가 대문자니?*/
+        }
+        if (text.charAt(0) === text.charAt(0).toUpperCase()) {
+          //여기는 js영역이고
+          return <h1>{text}</h1>;
+        } else {
+          return <h3>{text}</h3>;
+        }
+      };
+      const element = (
+        <>
+          <Message text="Oracle" />
+          <Message text="oracle" />
+        </>
+      );
+      ReactDOM.createRoot(rootElement).render(element);
+    </script>
+  </body>
+</html>

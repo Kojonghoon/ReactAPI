@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.querySelector("#root");
+      //paint를 소문자로 하지 않습니다. -에러발생
+      function Paint({ title, description, children }) {
+        return (
+          <>
+            <h1>{title}</h1>
+            <h2>{description}</h2>
+            {/* children 먹힌다는건 JSX이라는 의미임*/}
+            {children}
+          </>
+        );
+      }
+      const element = (
+        <>
+          <Paint title="JS와JSX함께쓰기" description="나는JSX이다.">
+            {Paint({
+              //
+              title: "React",
+              description: "가상DOM지원", //
+              children: "부분갱신처리 가능",
+            })}
+          </Paint>
+        </>
+      );
+      ReactDOM.createRoot(rootElement).render(element);
+    </script>
+  </body>
+</html>

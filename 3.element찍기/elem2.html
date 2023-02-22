@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.querySelector("#root");
+      //paint를 소문자로 하지 않습니다. -에러발생
+      const Paint = ({ title, description }) => (
+        <>
+          <h1>{title}</h1>
+          <h2>{description}</h2>
+        </>
+      );
+      const element = (
+        <>
+          <Paint title="JAVA" description="객체지향프로그래밍" />
+          <Paint title="React" description="프론트엔드라이브러리" />
+          <Paint title="Oracle" description="관계지향형데이터베이스" />
+        </>
+      );
+      ReactDOM.createRoot(rootElement).render(element);
+    </script>
+  </body>
+</html>
