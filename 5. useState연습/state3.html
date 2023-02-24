@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.querySelector("#root");
+
+      const Counter = () => {
+        const [num, setNum] = React.useState(0);
+        const handleAdd = () => {
+          console.log("handleAdd 호출");
+          setNum(num + 1);
+        };
+        const handleMinus = () => {
+          console.log("handleMinus 호출");
+          setNum(num - 1);
+        };
+        const handleZero = () => {
+          console.log("handleZero 호출");
+          setNum(0);
+        };
+
+        return (
+          <>
+            <span style={{ fontSize: 78 }}>{num}</span>
+            <button style={{ fontSize: 38 }} onClick={handleAdd}>
+              덧셈
+            </button>
+            &nbsp;
+            <button style={{ fontSize: 38 }} onClick={handleMinus}>
+              뺄셈
+            </button>
+            &nbsp;
+            <button style={{ fontSize: 38 }} onClick={handleZero}>
+              리셋
+            </button>
+          </>
+        );
+      };
+      const App = () => {
+        return (
+          <>
+            <Counter />
+          </>
+        );
+      };
+      ReactDOM.createRoot(rootElement).render(<App />);
+    </script>
+  </body>
+</html>

@@ -19,7 +19,7 @@
     <div id="root"></div>
     <script type="text/babel">
       const rootElement = document.querySelector("#root");
-      const paint = (title, description) => (
+      const Paint = (title, description) => (
         <>
           <h1>{title}</h1>
           <h2>{description}</h2>
@@ -27,9 +27,9 @@
       );
       const element = (
         <>
-          {paint("JAVA", "객체지향프로그래밍")}
-          {paint("React", "프론트엔드라이브러리")}
-          {paint("Oracle", "관계지향형데이터베이스")}
+          {Paint("JAVA", "객체지향프로그래밍")}
+          {Paint("React", "프론트엔드라이브러리")}
+          {Paint("Oracle", "관계지향형데이터베이스")}
         </>
       );
       ReactDOM.createRoot(rootElement).render(element);

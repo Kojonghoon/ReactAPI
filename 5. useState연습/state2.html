@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      /* root태그의 정보담기 */
+      const rootElement = document.querySelector("#root");
+      const Counter = () => {
+        //상태관리하는 훅 ->useState()
+        const [num, setNum] = React.useState(0);
+        const handleAdd = (event) => {
+          console.log(event.currentTarget);
+          // console.log(prev);
+          setNum(num + 1);
+          //이전 상태값을 기억해줌
+          setNum((prev) => prev + 1);
+        };
+        return (
+          <>
+            <span style={{ fontSize: 78 }}>{num}</span>
+            <button style={{ fontSize: 38 }} onClick={handleAdd}>
+              덧셈
+            </button>
+          </>
+        );
+      };
+      const App = () => {
+        return (
+          <>
+            <Counter />
+          </>
+        );
+      };
+      ReactDOM.createRoot(rootElement).render(<App />);
+    </script>
+  </body>
+</html>
