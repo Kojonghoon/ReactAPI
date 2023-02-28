@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.querySelector("#root");
+      const App = () => {
+        //화면을 새로고침 했을 때 이전에 입력한 키워드를 기억해줄래?
+        const [keyword, setKeyword] = React.useState(() => {
+          console.log("initialize");
+          return window.localStorage.getItem("keyword");
+        });
+        const [result, setResult] = React.useState("");
+        const [typing, setTyping] = React.useState(false);
+        //아무것도 배열에 적지 않으면 최초 한번만 useffect호출됨
+        //어떻게 하면 keyword가 바필 때마다 localStorage에 저장할 수 있을까? - useEffect를 사용함
+        //두 번째 파라미터 즉 의존성 배열에 keyword 를 입력하면 input에 값이 바필 때마다 useEffect가 호출됨
+        //의도한 변화에서 부수효과를 내는 것이 사이드 이펙트 이다
+        //키워드가 바뀌는 것은 메인 효과이고 그것을 로컬 스토리지에 저장하는 것이 부수효과이다.
+
+        React.useEffect(() => {
+          console.log("useEffect");
+          window.localStorage.setItem("keyword", keyword);
+        }, [keyword]);
+
+        const handleChange = (event) => {
+          setKeyword(event.target.value);
+          setTyping(true);
+        };
+        const handleClick = (event) => {
+          //console.log("handleClick");
+          //console.log(event.target);
+          setTyping(false);
+          setResult(`내가 찾은 결과는 ${keyword}`);
+        };
+        return (
+          <>
+            <input type="text" onChange={handleChange} value={keyword} />
+            <button onClick={handleClick}>검색</button>
+            {/* 타이핑 중이면 앞에거 보여주고 아니면 뒤에거 보여줘 */}
+            <p>{typing ? `사용자가 입력한 값 ${keyword}...` : result}</p>
+          </>
+        );
+      };
+      ReactDOM.createRoot(rootElement).render(<App />);
+    </script>
+  </body>
+</html>

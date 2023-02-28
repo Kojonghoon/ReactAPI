@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.querySelector("#root");
+      const App = () => {
+        const [result, setResult] = React.useState("");
+        const [typing, setTyping] = React.useState(false);
+        //use가 붙은 것은 모두 16.8부터 지원되는 리액트 훅입니다.
+        //useState는 서로 독립적이고 무엇이든 담을 수 있다.
+        //차이점 은 값이 바뀌는 것을 바로바로 인지할 수 있음
+        //왜 중요한가? ->컴포넌트 상태는 컴포넌트가 렌더링되는 주기와 관련이 있기 때문에...
+        // const [keyword, setKeyword] = React.useState("");
+        const keywordState = React.useState("");
+        const keyword = keywordState[0]; //관리할 상태값
+        const setKeyword = keywordState[1]; //상태를 바꾸어주는 역활함 //25번과 같은 역활(26~28)
+        const handleChange = (event) => {
+          setKeyword(event.target.value);
+          setTyping(true);
+        };
+        const handleClick = (event) => {
+          // console.log("handleClick");
+          // console.log(event.Target);
+          setTyping(false);
+          setResult(`내가 찾은 결과는 ${keyword}`);
+        };
+        return (
+          <>
+            <input type="text" onClick={handleChange} />
+            <button onClick={handleClick}>검색</button>
+            {/* 타이핑 중이면 앞에거 보여주고 아니면 뒤에거 보여줘 */}
+            <p>{typing ? `사용자가 입력한 값 ${keyword}...` : result}</p>
+          </>
+        );
+      };
+      ReactDOM.createRoot(rootElement).render(<App />);
+    </script>
+  </body>
+</html>

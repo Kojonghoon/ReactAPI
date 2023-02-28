@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.querySelector("#root");
+      const App = () => {
+        const [keyword, setKeyword] = React.useState("");
+        const [result, setResult] = React.useState("");
+        const [typing, setTyping] = React.useState(false);
+        const handleChange = (event) => {
+          setKeyword(event.target.value);
+          setTyping(true);
+        };
+        const handleClick = (event) => {
+          // console.log("handleClick");
+          // console.log(event.Target);
+          setTyping(false);
+          setResult(`내가 찾은 결과는 ${keyword}`);
+        };
+        return (
+          <>
+            <input type="text" onClick={handleChange} />
+            <button onClick={handleClick}>검색</button>
+            {/* 타이핑 중이면 앞에거 보여주고 아니면 뒤에거 보여줘 */}
+            <p>{typing ? `사용자가 입력한 값 ${keyword}...` : result}</p>
+          </>
+        );
+      };
+      ReactDOM.createRoot(rootElement).render(<App />);
+    </script>
+  </body>
+</html>
